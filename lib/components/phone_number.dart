@@ -34,7 +34,11 @@ class _Flag_PhoneNumberState extends State<Flag_PhoneNumber> {
                 color: Colors.black26,
               ),
             ),
+<<<<<<< HEAD
             //cursorColor:Colors.black,
+=======
+            cursorColor:Colors.black,
+>>>>>>> a58021927c6e2d048aa9bb89a5381516853c70c8
             onInputChanged: (PhoneNumber number) {
               print(number.phoneNumber);
             },
