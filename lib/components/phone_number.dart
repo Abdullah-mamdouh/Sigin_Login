@@ -27,10 +27,14 @@ class _Flag_PhoneNumberState extends State<Flag_PhoneNumber> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           InternationalPhoneNumberInput(
-
             textStyle: TextStyle(color: Colors.white,),
-            hintText: 'Eg. 821345678',
-            cursorColor:Colors.black,
+            inputDecoration: InputDecoration(
+              hintText: 'Eg. 821345678',
+              hintStyle: TextStyle(
+                color: Colors.black26,
+              ),
+            ),
+            //cursorColor:Colors.black,
             onInputChanged: (PhoneNumber number) {
               print(number.phoneNumber);
             },
@@ -38,6 +42,7 @@ class _Flag_PhoneNumberState extends State<Flag_PhoneNumber> {
               print(value);
             },
             selectorConfig: SelectorConfig(
+              showFlags: false,trailingSpace: false,
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
             ),
             ignoreBlank: false,
@@ -45,7 +50,6 @@ class _Flag_PhoneNumberState extends State<Flag_PhoneNumber> {
             validator: (value){
               print('phone number is not registered');
           },
-            countrySelectorScrollControlled: false,
 
             autoValidateMode: AutovalidateMode.disabled,
             selectorTextStyle: TextStyle(color: Colors.black),

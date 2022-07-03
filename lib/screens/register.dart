@@ -1,4 +1,6 @@
 
+import 'package:country_pickers/country_picker_dialog.dart';
+import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_login_screen/components/text_field.dart';
 import 'package:sign_login_screen/screens/signIn.dart';
@@ -22,6 +24,8 @@ class _RegisterState extends State<Register> {
 
   final emailController =  TextEditingController();
   final passwordController =  TextEditingController();
+
+  var onValuePicked;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -37,14 +41,18 @@ class _RegisterState extends State<Register> {
                 children: [
                   Positioned(left:10,top: 25,child: CircleAvatar(
                       backgroundColor:Colors.black,
-                      child: Center(child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios,color: white,),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },)))),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back_ios,color: white,),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },),
+                      ))),
                   Container(
-                    height:h*0.4,
-                    child: Image.asset('images/login.png',fit: BoxFit.cover,),
+                    height:h*0.2,
+                    width: double.infinity,
+                    child: Image.asset('images/login.png',fit: BoxFit.fill,),
                   ),
                 ],
               ),
@@ -72,7 +80,7 @@ class _RegisterState extends State<Register> {
                     Container(
                         margin: EdgeInsets.only(bottom: 18),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black26),borderRadius: BorderRadius.circular(5)
+                            border: Border.all(color: Colors.black26),borderRadius: BorderRadius.circular(8)
                         ),child: Flag_PhoneNumber()),
                     Lable(text: 'Password',),
                     Padding(

@@ -5,9 +5,11 @@ import 'package:sign_login_screen/components/textRow.dart';
 import 'package:sign_login_screen/constant/constantColors.dart';
 import 'package:sign_login_screen/screens/signIn.dart';
 
+import '../components/logo.dart';
 import '../components/myButton.dart';
-import '../components/onBoardModel.dart';
-import '../constant/style.dart';
+import '../components/page_view.dart';
+import '../components/skip_button.dart';
+import '../model/banner.dart';
 
 class OnBoard extends StatefulWidget {
   const OnBoard({
@@ -44,7 +46,14 @@ class _MyHomePageState extends State<OnBoard> {
       ),
     );
   }
-
+  List<AppBanner> bannars= [
+    AppBanner(1, 'images/im.png', 'Get Food Delivery to your doorstep asap',
+        'We have young and professional delivery team that will bring your food as soon as possible to your doorstep'),
+    AppBanner(2, 'images/im.png', 'Buy any Food from your favorite restaurant',
+        'We are constantly adding your favourite restaurant throughout the territory and arround your area carefully selected'),
+    AppBanner(3, 'images/im.png', 'Live your life smarter\nwith us!',
+        'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.')
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,39 +81,23 @@ class _MyHomePageState extends State<OnBoard> {
               child: Column(
                 //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerRight,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20)
-                    ),
-                    child: MaterialButton(
-                      color:secandryColor2,
-                      onPressed: () => print('Skip'),
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('7',style: TextStyle(
-                            color: secandryColor2,fontSize: 28,fontWeight: FontWeight.bold
-                        ),),
-                        Text('Krava',style: TextStyle(
-                            color: Colors.teal[300],fontSize: 28,fontWeight: FontWeight.bold
-                        ),)
-                      ],),
-                  ),
+                  SkipButton(),
+
+                  Logo(),
                   Container(
                     height: 455.0,
-                    child: PageView(
+                    child: PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: _pageController,
+                      onPageChanged: (int page) {
+                        setState(() {
+                          _currentPage = page;
+                        });
+                      },
+                      itemCount: appbannarList.length,
+                      itemBuilder: (context, index) => MyPageView(banner: bannars[index]),
+                    ),
+                    /* PageView(
                       physics: ClampingScrollPhysics(),
                       controller: _pageController,
                       onPageChanged: (int page) {
@@ -112,7 +105,8 @@ class _MyHomePageState extends State<OnBoard> {
                           _currentPage = page;
                         });
                       },
-                      children: <Widget>[
+                      children:
+                      <Widget>[
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           // mainAxisAlignment: MainAxisAlignment.center,
@@ -195,6 +189,7 @@ class _MyHomePageState extends State<OnBoard> {
                         ),
                       ],
                     ),
+                    */
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

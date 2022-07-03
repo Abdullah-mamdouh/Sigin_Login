@@ -30,9 +30,11 @@ class _PhoneNumberState extends State<PhoneNumber> {
         data: Theme.of(context).copyWith(primaryColor: Colors.pink),
         child: CountryPickerDialog(
             titlePadding: EdgeInsets.all(8.0),
+
             searchCursorColor: Colors.pinkAccent,
             searchInputDecoration: InputDecoration(hintText: 'Search...'),
             isSearchable: true,
+
             title: Text('Select your phone code'),
             onValuePicked: (Country country) =>
                 setState(() => _selectedDialogCountry = country),
